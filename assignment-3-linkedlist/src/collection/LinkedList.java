@@ -100,7 +100,7 @@ public class LinkedList {
         int counter = 0;
         Node currNode = this.head;
         while(currNode != null) {
-            counter += 1;
+            counter++;
             currNode = currNode.getNext();
         }
         return counter;

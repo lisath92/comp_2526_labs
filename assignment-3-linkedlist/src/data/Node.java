@@ -19,24 +19,40 @@ public class Node {
         setData(d);
     }
 
+    /**
+     * get next node
+     * @return Node
+     */
     public Node getNext() {
         return this.next;
     }
 
+    /**
+     * get data
+     * @return int data
+     */
     public int getData() {
         return this.data;
     }
 
+    /**
+     * set following node
+     * @param Node nextNode
+     */
     public void setNext(Node nextNode) {
         this.next = nextNode;
     }
 
+    /**
+     * set data of node
+     * @param int data
+     */
     public void setData(int data) {
         this.data = data;
     }
 
     /**
-     * 
+     * @see java.lang.Object#toString()
      */
     @Override
 	public String toString() {
