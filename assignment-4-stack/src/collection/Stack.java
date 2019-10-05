@@ -88,13 +88,23 @@ public class Stack {
                 displayResult += "->";
             }
         }
-        while (!tempStack.isEmpty()) {
-            StackNode tempNode = tempStack.pop();
-            this.push(tempNode.getData());
-        }
+        replaceStack(tempStack, this);
         System.out.println(displayResult);
     }
-
+    
+    /**
+     * Private helper method for replacing the original stack;
+     */
+    private void replaceStack(Stack tempStack, Stack sourceStack) {
+        while (!tempStack.isEmpty()) {
+            StackNode tempNode = tempStack.pop();
+            sourceStack.push(tempNode.getData());
+        }
+    }
+    
+    /**
+     * Sort the stack from min to max
+     */
     public void sort() {
         boolean sorted;
         boolean sortedInside;
@@ -109,7 +119,7 @@ public class Stack {
                     sorted = true;
                     continue;
                 }
-                if (tempData <= tempStack.peek().getData()) {
+                if (tempData >= tempStack.peek().getData()) {
                     tempStack.push(tempData);
                     sorted = true;
                 } else {
@@ -117,12 +127,12 @@ public class Stack {
                         sortedInside = false;
                         int counter = 0;
                         StackNode popped = tempStack.pop();
-                        if (tempData > popped.getData()) {
+                        if (tempData < popped.getData()) {
                             this.push(popped.getData());
                             counter++;
                         }
                         
-                        if (tempData <= tempStack.peek().getData()) {
+                        if (tempStack.isEmpty() || tempData >= tempStack.peek().getData()) {
                             tempStack.push(tempData);
                             sortedInside = true;
                             for (int i=0; i < counter; i++) {
@@ -134,7 +144,7 @@ public class Stack {
                 }
             } while(!sorted);
         }
-        tempStack.display();
+        replaceStack(tempStack, this);
     }
 
 }

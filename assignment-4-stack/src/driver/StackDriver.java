@@ -15,7 +15,7 @@ public class StackDriver {
         newStack.push(11);
         newStack.display();
 
-        Pop the top one
+        // Pop the top one
         StackNode pop1 = newStack.pop();
         System.out.println("popped Stack: " + pop1.getData());
 
@@ -36,6 +36,7 @@ public class StackDriver {
         System.out.println("Min of stack: " + smallestNum);
 
         newStack.sort();
+        System.out.print("Sort stack: ");
         newStack.display();
 
     }
