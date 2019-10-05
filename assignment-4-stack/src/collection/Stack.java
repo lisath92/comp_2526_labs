@@ -93,7 +93,7 @@ public class Stack {
     }
     
     /**
-     * Private helper method for replacing the original stack;
+     * Private helper method for replacing the original stack
      */
     private void replaceStack(Stack tempStack, Stack sourceStack) {
         while (!tempStack.isEmpty()) {
