@@ -100,10 +100,9 @@ public class Stack {
         boolean sortedInside;
         Stack tempStack = new Stack();
         while (!isEmpty()) {
-            StackNode tempNode = this.pop();
-            int tempData = tempNode.getData();
-            System.out.println(tempData);
             do {
+                StackNode tempNode = this.pop();
+                int tempData = tempNode.getData();
                 sorted = false;
                 if (tempStack.isEmpty()) {
                     tempStack.push(tempData);
@@ -114,27 +113,22 @@ public class Stack {
                     tempStack.push(tempData);
                     sorted = true;
                 } else {
-                    sortedInside = false;
-                    // 66 -> 4 -> 7 -> 3 -> 5
-                    // 3 ->  4->7->66
                     do {
+                        sortedInside = false;
                         int counter = 0;
-                        if (!tempStack.isEmpty()) {
-                            StackNode popped = tempStack.pop();
-                            if (tempData > tempStack.peek().getData()) {
-                                this.push(popped.getData());
-                                counter++;
+                        StackNode popped = tempStack.pop();
+                        if (tempData > popped.getData()) {
+                            this.push(popped.getData());
+                            counter++;
+                        }
+                        
+                        if (tempData <= tempStack.peek().getData()) {
+                            tempStack.push(tempData);
+                            sortedInside = true;
+                            for (int i=0; i < counter; i++) {
+                                StackNode tempPopped = this.pop();
+                                tempStack.push(tempPopped.getData());
                             }
-                            
-                            if (tempData <= popped.getData()) {
-                                this.push(popped.getData());
-                                sortedInside = true;
-                                for (int i=0; i < counter; i++) {
-                                    StackNode tempPopped = this.pop();
-                                    tempStack.push(tempPopped.getData());
-                                }
-                            }
-
                         }
                     } while (!sortedInside);
                 }
