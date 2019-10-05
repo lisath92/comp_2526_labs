@@ -88,22 +88,31 @@ public class Stack {
                 displayResult += "->";
             }
         }
-        while (!tempStack.isEmpty()) {
-            StackNode tempNode = tempStack.pop();
-            this.push(tempNode.getData());
-        }
+        replaceStack(tempStack, this);
         System.out.println(displayResult);
     }
 
+    /**
+     * Private helper method for sorting the stack;
+     */
+    private void replaceStack(Stack tempStack, Stack sourceStack) {
+        while (!tempStack.isEmpty()) {
+            StackNode tempNode = tempStack.pop();
+            sourceStack.push(tempNode.getData());
+        }
+    }
+
+    /**
+     * Sort the stack from min to large data
+     */
     public void sort() {
         boolean sorted;
         boolean sortedInside;
         Stack tempStack = new Stack();
         while (!isEmpty()) {
-            StackNode tempNode = this.pop();
-            int tempData = tempNode.getData();
-            System.out.println(tempData);
             do {
+                StackNode tempNode = this.pop();
+                int tempData = tempNode.getData();
                 sorted = false;
                 if (tempStack.isEmpty()) {
                     tempStack.push(tempData);
@@ -114,33 +123,27 @@ public class Stack {
                     tempStack.push(tempData);
                     sorted = true;
                 } else {
-                    sortedInside = false;
-                    // 66 -> 4 -> 7 -> 3 -> 5
-                    // 3 ->  4->7->66
                     do {
-                        int counter = 0;
-                        if (!tempStack.isEmpty()) {
-                            StackNode popped = tempStack.pop();
-                            if (tempData > tempStack.peek().getData()) {
-                                this.push(popped.getData());
-                                counter++;
-                            }
-                            
-                            if (tempData <= popped.getData()) {
-                                this.push(popped.getData());
-                                sortedInside = true;
-                                for (int i=0; i < counter; i++) {
-                                    StackNode tempPopped = this.pop();
-                                    tempStack.push(tempPopped.getData());
-                                }
-                            }
-
+                        sortedInside = false;
+                        Stack secondTempStack = new Stack();
+                        StackNode popped = tempStack.pop();
+                        if (tempData > popped.getData()) {
+                            secondTempStack.push(popped.getData());
+                        }
+                        
+                        if (tempData <= tempStack.peek().getData()) {
+                            tempStack.push(tempData);
+                            sortedInside = true;
+                            replaceStack(secondTempStack, tempStack);
                         }
                     } while (!sortedInside);
+                    sorted = true;
                 }
             } while(!sorted);
         }
-        tempStack.display();
+        Stack reverseOrder = new Stack();
+        replaceStack(tempStack, reverseOrder);
+        replaceStack(reverseOrder, this);
     }
 
 }

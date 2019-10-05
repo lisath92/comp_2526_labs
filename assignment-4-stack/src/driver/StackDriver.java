@@ -36,6 +36,7 @@ public class StackDriver {
         System.out.println("Min of stack: " + smallestNum);
 
         newStack.sort();
+        System.out.print("Stack sorted: ");
         newStack.display();
 
     }
