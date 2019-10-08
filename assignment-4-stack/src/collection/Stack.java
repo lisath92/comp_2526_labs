@@ -119,31 +119,29 @@ public class Stack {
                     sorted = true;
                     continue;
                 }
-                if (tempData <= tempStack.peek().getData()) {
+                if (tempData > tempStack.peek().getData()) {
                     tempStack.push(tempData);
                     sorted = true;
                 } else {
+                    Stack secondTempStack = new Stack();
                     do {
                         sortedInside = false;
-                        Stack secondTempStack = new Stack();
                         StackNode popped = tempStack.pop();
-                        if (tempData > popped.getData()) {
+                        if (tempData <= popped.getData()) {
                             secondTempStack.push(popped.getData());
                         }
                         
-                        if (tempData <= tempStack.peek().getData()) {
+                        if (tempStack.isEmpty() || tempData > tempStack.peek().getData()) {
                             tempStack.push(tempData);
-                            sortedInside = true;
                             replaceStack(secondTempStack, tempStack);
+                            sortedInside = true;
                         }
                     } while (!sortedInside);
                     sorted = true;
                 }
             } while(!sorted);
         }
-        Stack reverseOrder = new Stack();
-        replaceStack(tempStack, reverseOrder);
-        replaceStack(reverseOrder, this);
+        replaceStack(tempStack, this);
     }
 
 }
