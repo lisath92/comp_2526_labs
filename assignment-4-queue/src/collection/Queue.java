@@ -79,14 +79,14 @@ public class Queue {
      * Display the queue
      */
     public void display() {
-        String displayString = "";
+        StringBuilder displayString = new StringBuilder("");
         Queue tempQueue = new Queue();
         while (!isEmpty()) {
             QueueNode tempNode = this.remove();
             tempQueue.add(tempNode.getData());
-            displayString += tempNode.getData();
+            displayString.insert(0, tempNode.getData());
             if (tempNode.getNext() != null) {
-                displayString += "->";
+                displayString.insert(0, "->");
             }
         }
         replaceQueue(tempQueue, this);
