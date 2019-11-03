@@ -27,8 +27,8 @@ public class Node {
     }
 
     /**
-     * Set left node
-     * @param Node left
+     * Insert data at the correct level
+     * @param int
      */
     public void insert(int d) {
       if (d >= data) {
@@ -65,13 +65,6 @@ public class Node {
      */
     public Node getRightChild() {
       return this.right;
-    }
-
-    /**
-     * @return boolean isLeafNode
-     */
-    public boolean isLeafNode() {
-      return (left == null) && (right == null);
     }
 
     public String toString(int spaces) {
