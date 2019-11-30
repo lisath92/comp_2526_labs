@@ -15,9 +15,10 @@ public class TextProcessorDriver {
     HashMap letterMap = processor.histogramOfLetters(test);
     HashMap wordMap = processor.histogramOfWords(test);
     System.out.println("***** LetterHistogram *****");
-    processor.display(letterMap);
+    String finalString = processor.display(letterMap);
+    System.out.println(finalString);
     System.out.println("\n***** WordHistogram *****");
-    processor.display(wordMap);
+    System.out.println(processor.display(wordMap));
 
     String word = processor.mostFrequentWord(test);
     char letter = processor.mostFrequentLetter(test);

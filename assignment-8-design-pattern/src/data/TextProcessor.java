@@ -101,9 +101,11 @@ public class TextProcessor {
    * Displays any of the histograms
    * @param map
    */
-  public void display(Map<?,Integer> map) {
+  public String display(Map<?,Integer> map) {
+	String finalString = "";
     for(Map.Entry<?, Integer> set: map.entrySet()) {
-      System.out.println(set.getKey() + ": " + set.getValue());
+    	finalString = finalString + set.getKey() + ": " + set.getValue() + "\n";
     }
+    return finalString;
   }
 }
